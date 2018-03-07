@@ -11,8 +11,9 @@ public class firstAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/board/secondPage.jsp";
+		String url = "../jsp/secondPage.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		System.out.println("call secondPage.jsp");
 		dispatcher.forward(request, response);
 	}
 
