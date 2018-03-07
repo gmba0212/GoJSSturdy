@@ -8,5 +8,7 @@
 </head>
 <body>
 hi
+<%= request.getParameter("obj") %>
+<input type="text" name="asdfsadf" value="${obj}">
 </body>
 </html>
