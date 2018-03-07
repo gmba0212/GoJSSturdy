@@ -14,10 +14,16 @@
 <form name="frm">
 	<input type="hidden" name = "command" value="secondPage">
 </form>
+<% String context = (String)request.getAttribute("obj"); 
+%>
+
+<%= context %><br>
+<input type="text" name ="data" value="context">
 <div id="sample">
   <div id="myDiagramDiv" style="border: solid 1px black; width:200px; height:200px">
   </div>
   <span id="diagramEventsMsg" style="color: red"></span>
 </div>
+
 </body>
 </html>

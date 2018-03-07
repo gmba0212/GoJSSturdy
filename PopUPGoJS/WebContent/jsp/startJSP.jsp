@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,13 +11,14 @@
 <title>startPage</title>
 </head>
 <body onload="init()">
-<form name="frm">
-	<input type="hidden" name = "command" value="firstPage">
-</form>
-<div id="sample">
-  <div id="myDiagramDiv" style="border: solid 1px black; width:200px; height:200px">
-  </div>
-  <span id="diagramEventsMsg" style="color: red"></span>
-</div>
-</body>
+	<form name="frm">
+		<input type="hidden" name="command" value="firstPage">
+	</form>
+	<div id="sample">
+		<div id="myDiagramDiv"
+			style="border: solid 1px black; width: 200px; height: 200px"></div>
+		<span id="diagramEventsMsg" style="color: red"></span>
+	</div>
+	<input type = "text" name="returnResult" value="">
+</body> 
 </html>

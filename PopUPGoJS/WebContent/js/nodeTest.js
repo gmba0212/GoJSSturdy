@@ -1,4 +1,6 @@
 var $$ = null;
+var command=null;
+var jsonData=null;
 
 function init() {
 	if (window.goSamples)
@@ -27,39 +29,29 @@ function init() {
 		document.getElementById("diagramEventsMsg").textContent = s;
 	}
 	myDiagram.addDiagramListener("objectSingleClicked", function(e) {
+		command=null;
+		jsonData=null;
+		var part = e.subject.part;
+		var newObj = new Object();
+		newObj.key = part.data.key;
+		newObj.color = part.data.color;
+		
+		jsonData = JSON.stringify(newObj);
+		command = document.frm.command.value;
 		
 		
-		page = document.frm.command.value;
-		if (page=="firstPage") {
+		if (command == "firstPage") {
 			myWindow = window.open('../jsp/secondPage.jsp');
-		} else if (page =="secondPage") {
+			sendData(command , jsonData)
+		} else if (command == "secondPage") {
 			myWindow = window.open('../jsp/thirdPage.jsp');
-		} else if (page =="thirdPage") {
-			var part = e.subject.part;
-			var j = "";
-			j = '{"key":"' + part.data.key + '","color":"' + part.data.color
-					+ '"}';
-			var newObj = new Object();
-			newObj.key = part.data.key;
-			newObj.color = part.data.color;
-
-			var jsonData = JSON.stringify(newObj);
-			$.ajax({
-				type : "POST",
-				dataType : "json",
-				url : "../pop.do",
-				data : {
-					obj : jsonData,
-					command : document.frm.command.value
-				}
-
-			});
+			sendData(command , jsonData)
+		} else if (command == "thirdPage") {
+			
+			
 		}
 
 	});
-
-	// but use the default Link template, by not setting Diagram.linkTemplate
-	// create the model data that will be represented by Nodes and Links
 	myDiagram.model = new go.GraphLinksModel([ {
 		key : "Alpha",
 		color : "lightblue"
@@ -67,6 +59,33 @@ function init() {
 		key : "",
 		color : "white"
 	}, ], []);
+	/*if (document.frm.command.value == "firstPage") {
+
+		myDiagram.model = new go.GraphLinksModel([ {
+			key : "Alpha",
+			color : "lightblue"
+		}, {
+			key : "",
+			color : "white"
+		}, ], []);
+	} else {
+		myDiagram.model = new go.GraphLinksModel();
+
+	}*/
+
+}
+
+function sendData(command , jsonData) {
+	$.ajax({
+		type : "POST",
+		dataType : "json",
+		url : "../pop.do",
+		data : {
+			obj : jsonData,
+			command : command
+		}
+
+	});
 }
 
 function popUPdata() {
