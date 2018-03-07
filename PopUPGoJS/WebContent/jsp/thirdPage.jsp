@@ -8,11 +8,11 @@
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>startPage</title>
+<title>thirdpage</title>
 </head>
 <body onload="init()">
 <form name="frm">
-	<input type="hidden" name = "command" value="firstPage">
+	<input type="hidden" name = "command" value="thirdPage">
 </form>
 <div id="sample">
   <div id="myDiagramDiv" style="border: solid 1px black; width:200px; height:200px">

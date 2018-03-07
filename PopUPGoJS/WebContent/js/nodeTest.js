@@ -1,11 +1,11 @@
-var $$=null;
+var $$ = null;
 
 function init() {
 	if (window.goSamples)
 		goSamples(); // init for these samples -- you don't need to call this
 	$$ = go.GraphObject.make; // for conciseness in defining templates
 	myDiagram = $$(go.Diagram, "myDiagramDiv", // create a Diagram for the DIV
-												// HTML element
+	// HTML element
 	{
 		initialContentAlignment : go.Spot.Center, // center the content
 		"undoManager.isEnabled" : true
@@ -13,7 +13,7 @@ function init() {
 	});
 	// define a simple Node template
 	myDiagram.nodeTemplate = $$(go.Node, "Auto", // the Shape will go around
-													// the TextBlock
+	// the TextBlock
 	$$(go.Shape, "RoundedRectangle", {
 		strokeWidth : 1
 	},
@@ -26,30 +26,37 @@ function init() {
 	function showMessage(s) {
 		document.getElementById("diagramEventsMsg").textContent = s;
 	}
-	myDiagram.addDiagramListener("objectSingleClicked",
-			function(e) {
-		alert("node Click");
-				var part = e.subject.part;
-				var j = "";
-				j = '{"key":"' + part.data.key + '","color":"'
-						+ part.data.color + '"}';
-				var newObj = new Object();
-				newObj.key = part.data.key;
-				newObj.color = part.data.color;
-				
-				var jsonData = JSON.stringify(newObj);
-				$.ajax({
-					type : "POST",
-					dataType : "json",
-					url : "../pop.do",
-					data : {
-						obj : jsonData,
-						command :  document.frm.command.value
-					}
+	myDiagram.addDiagramListener("objectSingleClicked", function(e) {
+		
+		
+		page = document.frm.command.value;
+		if (page=="firstPage") {
+			myWindow = window.open('../jsp/secondPage.jsp');
+		} else if (page =="secondPage") {
+			myWindow = window.open('../jsp/thirdPage.jsp');
+		} else if (page =="thirdPage") {
+			var part = e.subject.part;
+			var j = "";
+			j = '{"key":"' + part.data.key + '","color":"' + part.data.color
+					+ '"}';
+			var newObj = new Object();
+			newObj.key = part.data.key;
+			newObj.color = part.data.color;
 
-				});
+			var jsonData = JSON.stringify(newObj);
+			$.ajax({
+				type : "POST",
+				dataType : "json",
+				url : "../pop.do",
+				data : {
+					obj : jsonData,
+					command : document.frm.command.value
+				}
 
 			});
+		}
+
+	});
 
 	// but use the default Link template, by not setting Diagram.linkTemplate
 	// create the model data that will be represented by Nodes and Links
@@ -62,6 +69,6 @@ function init() {
 	}, ], []);
 }
 
-function popUPdata(){
-	
+function popUPdata() {
+
 }
