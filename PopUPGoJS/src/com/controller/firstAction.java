@@ -12,10 +12,9 @@ public class firstAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "jsp/secondPage.jsp";
-		//response.sendRedirect(url);
-		System.out.println("call secondPage.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/secondPage.jsp");
 		dispatcher.forward(request, response);
+		//response.sendRedirect(url);
 	}
 
 }
