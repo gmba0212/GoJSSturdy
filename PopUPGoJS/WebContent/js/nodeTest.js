@@ -40,25 +40,29 @@ function init() {
 		command = document.frm.command.value;
 		
 		
+		
 		if (command == "firstPage") {
+			sendData(command , jsonData);
 			myWindow = window.open('../jsp/secondPage.jsp');
-			sendData(command , jsonData)
+			
 		} else if (command == "secondPage") {
+			
 			myWindow = window.open('../jsp/thirdPage.jsp');
-			sendData(command , jsonData)
+			sendData(command , jsonData);
+			
 		} else if (command == "thirdPage") {
 			
 			
+		}
+if(command!="firstPage"){
+		window.close();	
 		}
 
 	});
 	myDiagram.model = new go.GraphLinksModel([ {
 		key : "Alpha",
 		color : "lightblue"
-	}, {
-		key : "",
-		color : "white"
-	}, ], []);
+	}], []);
 	/*if (document.frm.command.value == "firstPage") {
 
 		myDiagram.model = new go.GraphLinksModel([ {

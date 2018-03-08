@@ -13,6 +13,7 @@
 <body onload="init()">
 	<form name="frm">
 		<input type="hidden" name="command" value="firstPage">
+		<input type="hidden" name="jsonData" value="">
 	</form>
 	<div id="sample">
 		<div id="myDiagramDiv"

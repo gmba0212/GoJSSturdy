@@ -14,12 +14,11 @@
 <form name="frm">
 	<input type="hidden" name = "command" value="secondPage">
 </form>
-<% System.out.print("나 여기왔다!"); %>
 <% 
 	String context = (String)request.getParameter("obj"); 
-	System.out.print(context);
+	System.out.print(context+"\n");
 %>
-<input type="text" name ="data" value="<%= context%>">
+<input type="text" name ="data" value="${param.obj }">
 <div id="sample">
   <div id="myDiagramDiv" style="border: solid 1px black; width:200px; height:200px">
   </div>
