@@ -15,8 +15,11 @@ public class ActionFactory {
 		System.out.println("ActionFactory : "+command);
 		if(command.equals("firstPage")) {
 			action = new firstAction();
-		}else if(command.equals("second")) {
+		}else if(command.equals("secondPage")) {
 			action = new secondAction();
+		}else if (command.equals("thirdPage")) {
+			action = new thirdAction();
+			
 		}
 		return action;
 	}

@@ -7,14 +7,9 @@
 
 var myWindow = null; 
 
-function tong(){
-	openWin();
-	sendToChild();
-}
-
 function openWin() 
 { 
-myWindow=window.open('noneAjaxPage_2.jsp','','width=500,height=500'); 
+myWindow=window.open('noneAjaxPage_2.jsp'); 
 
 } 
  

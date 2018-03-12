@@ -1,8 +1,11 @@
 var $$ = null;
-var command=null;
-var jsonData=null;
-
+var command = null;
+var jsonData = null;
+var myWindow = null;
 function init() {
+	if(document.getElementById("command").value!=="firstPage"){
+		opener.parent.mainsendToChild();
+	}
 	if (window.goSamples)
 		goSamples(); // init for these samples -- you don't need to call this
 	$$ = go.GraphObject.make; // for conciseness in defining templates
@@ -29,64 +32,102 @@ function init() {
 		document.getElementById("diagramEventsMsg").textContent = s;
 	}
 	myDiagram.addDiagramListener("objectSingleClicked", function(e) {
-		command=null;
-		jsonData=null;
+		command = null;
+		jsonData = null;
 		var part = e.subject.part;
 		var newObj = new Object();
 		newObj.key = part.data.key;
 		newObj.color = part.data.color;
-		
-		jsonData = JSON.stringify(newObj);
-		command = document.frm.command.value;
-		
-		
-		
-		if (command == "firstPage") {
-			sendData(command , jsonData);
-			myWindow = window.open('../jsp/secondPage.jsp');
-			
-		} else if (command == "secondPage") {
-			
-			myWindow = window.open('../jsp/thirdPage.jsp');
-			sendData(command , jsonData);
-			
-		} else if (command == "thirdPage") {
-			
-			
-		}
-if(command!="firstPage"){
-		window.close();	
-		}
 
+		jsonData = JSON.stringify(newObj);
+		command = document.getElementById("command").value;
+		var sendJson = '{"class": "go.TreeModel", "nodeDataArray":['+jsonData+']}';
+		if (command === "firstPage") {
+			document.getElementById("jsonString").value = sendJson;
+			myWindow = window.open('../jsp/secondPage.jsp');
+
+		}
+		if(command ==='secondPage'){
+			var desLocation="../pop.do";
+			//window.location="../jsp/thirdPage.jsp";
+			//sendData(command,sendJson);
+			sendForm(desLocation,sendJson,command);
+		}
+		if(command ==='thirdPage'){
+			alert('thirdPage');
+			var desLocation="../pop.do";
+			sendForm(desLocation,sendJson,command);
+			
+			opener.parent.location.reload();
+			window.close();
+		}
+		/*if (command != "firstPage") {
+			window.close();
+		}
+*/
 	});
-	myDiagram.model = new go.GraphLinksModel([ {
-		key : "Alpha",
-		color : "lightblue"
-	}], []);
-	/*if (document.frm.command.value == "firstPage") {
+
+	if (document.getElementById("command").value === "firstPage") {
 
 		myDiagram.model = new go.GraphLinksModel([ {
 			key : "Alpha",
 			color : "lightblue"
-		}, {
-			key : "",
-			color : "white"
-		}, ], []);
+		}
+		], []);
+	} else if(document.getElementById("command").value==="secondPage") {
+		load();
 	} else {
-		myDiagram.model = new go.GraphLinksModel();
-
-	}*/
+		alert('thirdPage load')
+		load();
+		
+	}
 
 }
+function load(){
+	alert(document.getElementById("jsonString").value);
+	myDiagram.model = go.Model.fromJson(document.getElementById("jsonString").value);
+}
 
-function sendData(command , jsonData) {
+function mainsendToChild() {
+	var sv = document.getElementById('jsonString').value;
+	myWindow.document.getElementById('jsonString').value = sv;
+}
+
+function sendForm(path,data,command){
+	var form = document.createElement("form");
+	form.setAttribute("method","POST");
+	form.setAttribute("action",path);
+	var hiddenField1 = document.createElement("input");
+	hiddenField1.setAttribute("name","obj");
+	hiddenField1.setAttribute("value",data);
+	
+	var hiddenField2 = document.createElement("input");
+	hiddenField2.setAttribute("name","command");
+	hiddenField2.setAttribute("value",command);
+	form.appendChild(hiddenField1);
+	form.appendChild(hiddenField2);
+	document.body.appendChild(form);
+	form.submit();
+	
+}
+function sendData(command, jsonData) {
 	$.ajax({
 		type : "POST",
-		dataType : "json",
 		url : "../pop.do",
 		data : {
 			obj : jsonData,
 			command : command
+		},
+		success : function() {
+			alert('success');
+		},
+		error : function(request, status, error) {
+			alert("code");
+			alert("code:" + request.status);
+			alert("message");
+			alert("message:" + request.responseText);
+			alert("error");
+			alert("error:" + error);
 		}
 
 	});

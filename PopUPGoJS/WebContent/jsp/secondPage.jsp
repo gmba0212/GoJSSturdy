@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,19 +11,13 @@
 <title>secondPage</title>
 </head>
 <body onload="init()">
-<form name="frm">
-	<input type="hidden" name = "command" value="secondPage">
-</form>
-<% 
-	String context = (String)request.getParameter("obj"); 
-	System.out.print(context+"\n");
-%>
-<input type="text" name ="data" value="${param.obj }">
-<div id="sample">
-  <div id="myDiagramDiv" style="border: solid 1px black; width:200px; height:200px">
-  </div>
-  <span id="diagramEventsMsg" style="color: red"></span>
-</div>
+	<input type="hidden" name="jsonString" id="jsonString" value="">
+	<input type="hidden" name="command" id="command" value="secondPage">
+	<div id="sample">
+		<div id="myDiagramDiv"
+			style="border: solid 1px black; width: 200px; height: 200px"></div>
+		<span id="diagramEventsMsg" style="color: red"></span>
+	</div>
 
 </body>
 </html>

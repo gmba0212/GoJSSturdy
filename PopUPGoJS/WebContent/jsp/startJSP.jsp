@@ -11,15 +11,21 @@
 <title>startPage</title>
 </head>
 <body onload="init()">
-	<form name="frm">
-		<input type="hidden" name="command" value="firstPage">
-		<input type="hidden" name="jsonData" value="">
-	</form>
+
+	<%
+		String tmp = (String) request.getParameter("obj");
+	%>
+	<input type="hidden" name="jsonString" id="jsonString" value="">
+	<input type="hidden" name="command" id="command" value="firstPage">
 	<div id="sample">
 		<div id="myDiagramDiv"
 			style="border: solid 1px black; width: 200px; height: 200px"></div>
 		<span id="diagramEventsMsg" style="color: red"></span>
 	</div>
-	<input type = "text" name="returnResult" value="">
-</body> 
+	
+	receiveData=
+	<%= tmp %>
+	<textarea name="res"><%= tmp %></textarea>
+	<input type="text" name="resultData" id="resultData" value="">
+</body>
 </html>
