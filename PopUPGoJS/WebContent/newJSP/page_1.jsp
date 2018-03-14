@@ -4,29 +4,21 @@
 <html>
 <head>
 <script src="../js/go.js"></script>
-<script src="../js/nodeTest.js"></script>
+<script src="../newJS/mainJS.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>startPage</title>
+<title>Insert title here</title>
 </head>
 <body onload="init()">
-
-	<%
-		String tmp = (String) request.getParameter("obj");
-		System.out.println("firstPage :"+tmp);
-	%>
-	<input type="hidden" name="jsonString" id="jsonString" value="">
-	<input type="hidden" name="command" id="command" value="firstPage">
-	<div id="sample">
+	<form name="frm">
+		<input type="hidden" name="command" value="firstPage">
+	</form>
+	<div id="popGoJS">
 		<div id="myDiagramDiv"
 			style="border: solid 1px black; width: 200px; height: 200px"></div>
 		<span id="diagramEventsMsg" style="color: red"></span>
 	</div>
-	
-	receiveData=
-	<%= tmp %>
-	<textarea name="res"><%= tmp %></textarea>
-	<input type="text" name="resultData" id="resultData" value="">
+
 </body>
 </html>

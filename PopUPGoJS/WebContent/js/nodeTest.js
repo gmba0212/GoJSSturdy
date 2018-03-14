@@ -48,18 +48,19 @@ function init() {
 
 		}
 		if(command ==='secondPage'){
+			alert(command);
 			var desLocation="../pop.do";
 			//window.location="../jsp/thirdPage.jsp";
 			//sendData(command,sendJson);
 			sendForm(desLocation,sendJson,command);
 		}
 		if(command ==='thirdPage'){
-			alert('thirdPage');
+			alert(command);
 			var desLocation="../pop.do";
 			sendForm(desLocation,sendJson,command);
 			
-			opener.parent.location.reload();
-			window.close();
+			//opener.parent.location.reload();
+			//window.close();
 		}
 		/*if (command != "firstPage") {
 			window.close();
@@ -77,14 +78,12 @@ function init() {
 	} else if(document.getElementById("command").value==="secondPage") {
 		load();
 	} else {
-		alert('thirdPage load')
 		load();
 		
 	}
 
 }
 function load(){
-	alert(document.getElementById("jsonString").value);
 	myDiagram.model = go.Model.fromJson(document.getElementById("jsonString").value);
 }
 
