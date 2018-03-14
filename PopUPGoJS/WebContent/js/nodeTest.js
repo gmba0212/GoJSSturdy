@@ -3,9 +3,10 @@ var command = null;
 var jsonData = null;
 var myWindow = null;
 function init() {
-	if(document.getElementById("command").value!=="firstPage"){
+	if(document.getElementById("command").value ==="secondPage"){
 		opener.parent.mainsendToChild();
 	}
+	
 	if (window.goSamples)
 		goSamples(); // init for these samples -- you don't need to call this
 	$$ = go.GraphObject.make; // for conciseness in defining templates
@@ -78,10 +79,16 @@ function init() {
 	} else if(document.getElementById("command").value==="secondPage") {
 		load();
 	} else {
+		//getData();
 		load();
-		
 	}
 
+}
+function getData(){
+	var reqData = null;
+	
+	reqData='<%= (String) request.getParameter("obj")%>';
+	document.getElementById("jsonString").value=reqData;
 }
 function load(){
 	myDiagram.model = go.Model.fromJson(document.getElementById("jsonString").value);
