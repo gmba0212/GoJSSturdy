@@ -5,7 +5,7 @@
 var xmlDoc = null;
 var xml={
 		sayHello:function(){
-			alert("helloWorld");
+			alert("helloWorlfffd");
 		},
 		getXMLDoc_xmlStr:function(xmlstr){
 			if(window.DOMParser){
