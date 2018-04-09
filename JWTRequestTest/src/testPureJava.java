@@ -38,10 +38,16 @@ public class testPureJava {
 		Date exp = new Date(System.currentTimeMillis() + (1000 * 3000)); // 30 seconds
 		System.out.println(base64SecretBytes);
 		writeJwtTokenFile(base64SecretBytes);
-		String token = Jwts.builder().setId(id).setIssuedAt(now).setNotBefore(now).setExpiration(exp)
-				.setSubject("TESTSUBJECT").setIssuer("B2B").setAudience(userID)
-				.signWith(SignatureAlgorithm.HS256, base64SecretBytes).compact();
-
+		String token = Jwts.builder().
+				setIssuedAt(now).
+				setId(id).
+				setNotBefore(now).
+				setExpiration(exp).
+				setSubject("TESTSUBJECT").
+				setIssuer("B2B").
+				setAudience(userID).
+				signWith(SignatureAlgorithm.HS256, base64SecretBytes).
+				compact();
 		return token;
 	}
 
@@ -57,7 +63,6 @@ public class testPureJava {
 			e.printStackTrace();
 		}
 		return name;
-
 	}
 
 	public String verifyToken(String token) {
