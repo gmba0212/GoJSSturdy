@@ -59,8 +59,10 @@ public class jSonTokenServlet extends HttpServlet {
 			System.out.println(userID);
 			String token = testPureJava.generateToken(userID);
 			System.out.println(token);
-			response.getWriter().write(token);
-			ss.verifyToken(token);
+			System.out.println(ss.verifyToken(token));
+			
+			response.getWriter().write(ss.verifyToken(token)+" "+token);
+
 	}
 
 	public static String getBody(HttpServletRequest request) throws IOException {
