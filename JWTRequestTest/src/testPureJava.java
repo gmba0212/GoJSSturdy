@@ -50,6 +50,19 @@ public class testPureJava {
 				compact();
 		return token;
 	}
+	public String getDataFromJsonString(String data,String jsonString) {
+		String res = "";
+		JSONParser parser = new JSONParser();
+		try {
+			Object obj = parser.parse(jsonString);
+			JSONObject jsonObject = (JSONObject) obj;
+
+			res = (String) jsonObject.get(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 	public String getIDFromJsonString(String jsonString) {
 		String name = "";

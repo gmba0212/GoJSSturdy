@@ -53,6 +53,7 @@ public class jSonTokenServlet extends HttpServlet {
 			String jsonData= getBody(request);
 			String userID="";
 			//testPureJava t=new testPureJava();
+			System.out.println("tsetasdfasdfasdfData");
 			testPureJava ss= new testPureJava();
 			System.out.println(jsonData);
 			userID = ss.getIDFromJsonString(jsonData);
