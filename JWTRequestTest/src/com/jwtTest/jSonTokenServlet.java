@@ -67,8 +67,12 @@ public class jSonTokenServlet extends HttpServlet {
 			String userID = ss.getDataFromJsonString("userid", jsonData);
 			token = ss.generateToken(userID);
 			response.getWriter().write(token);
+			System.out.println("publish token :"+token);
 		} else {
-			response.getWriter().write(ss.verifyToken(token));
+			String verifyResult = ss.verifyToken(token);
+			
+			response.getWriter().write(verifyResult);
+			System.out.println("verifyResult :"+verifyResult);
 		}
 	}
 }
